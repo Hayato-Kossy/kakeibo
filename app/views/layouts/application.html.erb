@@ -14,13 +14,28 @@
   </head>
 
   <body>
-      <div class="container">
-    <% if flash[:success] %>
-      <div class="alert alert-success">
-        <%= flash[:success] %>
+    <nav class="navbar navbar-light bg-light">
+      <div class="navbar-brand">家計簿アプリ</div>
+      <div>
+
+        <% if session[:user_id].present? %>
+        <%= link_to "登録内容の更新", edit_user_path, class: "btn btn-outline-info"%>
+        <%= link_to "ログアウト", signout_path, class: "btn btn-outline-secondary"%>
+
+        <% else %>
+
+        <%= link_to "会員登録", signup_path, class: "btn btn-outline-primary"%>
+
+        <% end %>
       </div>
+    </nav>
+    <div class="container">
+      <% if flash[:success] %>
+        <div class="alert alert-success">
+          <%= flash[:success] %>
+        </div>
       <% end %>
-    <%= yield %>
+      <%= yield %>
     </div>
     <!-- BootstrapのCDNからJSファイルを読み込み -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -28,4 +43,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
-
